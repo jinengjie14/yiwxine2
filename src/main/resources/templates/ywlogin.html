@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}" />
+	<style type="text/css">
+		body{
+    color: #ffffff;
+    font: 18px/1.5 'Ubuntu', sans-serif;
+}
+		*{font-family: 微软雅黑;}
+
+@media screen and (max-width:992px){     
+}
+
+@media screen and (max-width:768px){
+	.logouser img{width:100%;max-width: 200px;}
+	.logouser{width: 40%;margin-left: 33%;}
+	.div3{display: none;}
+	.span2{display: inline-block;}
+
+}
+@media screen and (max-width: 414px){
+	.mid{margin:-72px auto;}
+	.login a{font-size:25px;}
+	.mid form div:nth-child(3) input{margin-top: 25px !important;}
+	
+	#drag{margin-top: 25px;}
+
+}
+
+		.logouser:hover {
+-webkit-animation:sucaijiayuan 1s .1s
+ ease both;
+-moz-animation:tada 1s .1s ease both;
+}
+@-webkit-keyframes sucaijiayuan {
+0% {
+-webkit-transform:scale(1)
+}
+10%, 20% {
+-webkit-transform:scale(0.8) rotate(-2deg)
+}
+30%, 50%, 70%, 90% {
+-webkit-transform:scale(1.1) rotate(2deg)
+}
+40%, 60%, 80% {
+-webkit-transform:scale(1.1) rotate(-2deg)
+}
+100% {
+-webkit-transform:scale(1) rotate(0)
+}
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="container" style="">
+<div class="row">
+<div class="logouser col-md-2 col-md-offset-2 col-sm-2" style="">
+<img src="img/logo.png"  style="">
+</div>
+
+<div class="col-md-4 col-md-offset-2 col-sm-3 col-sm-offset-3 div3">
+
+</div>
+</div>
+
+
+<div class="mid" id="mid1" style="">
+   <form method="post" th:action="@{/ywlogin}">
+
+   <div class="login" style="">
+	<a style="">铱王星登录</a>
+    </div>
+
+ <div class="form-group">
+
+    <input type="text" style="width: 100%;
+    height: 58px;" class="form-control" id="input-username" placeholder="Username" name="account">
+
+  </div>
+    <div class="form-group">
+    
+    <input type="password" style="width: 100%;
+    height: 58px;margin-top:45px;" class="form-control" id="input-password" placeholder="Password" name="passwd">
+  </div>
+  <div id="drag">
+  <div class="drag_bg">
+  	
+  </div>
+  <div class="drag_text" onselectstart="return false;" unselectable="on">拖动滑块验证
+  </div>
+  <div class="handler handler_bg">
+  	
+  </div>
+  </div>
+  <span><a href="">忘记密码?</a></span>
+  <span class="span2" style=""><a>马上注册</a></span>
+
+  <div style="text-align: center;">
+	<button id="submit" type="submit" class="spin circle submit" style="">Login</button>
+  </div>
+  </form>
+  </div>
+
+
+
+
+
+
+</div>
+<div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/jquery-3.2.1/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/jquery.gradientify.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/drag.js}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("body").gradientify({
+			gradients: [
+				{ start: [49,76,172], stop: [242,159,191] },
+				{ start: [255,103,69], stop: [240,154,241] },
+				{ start: [33,229,241], stop: [235,236,117] }
+			]
+		});
+	});
+
+ 
+   
+
+$('#drag').drag();
+</script>
+</html>

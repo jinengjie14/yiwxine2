@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/note.css}">
+    <link rel="stylesheet" th:href="@{/css/page.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+    <style type="text/css">
+        .navbar{ transition: background-color 0.5s linear; }
+       @media screen and (max-width:768px){
+            .rightmenu{margin-left:0px !important;width:100%;}
+            .topul li{width:100%;}
+            .leftmenu {
+                left: -200px;
+            }
+            .p1 {
+                position: absolute !important;
+                left: 0px !important;
+            }
+            #menu{
+                margin:0 5%;
+            }
+
+        }
+        @media screen and (max-width: 429px){
+            #menu{margin:0;padding-left:50px;}
+            #menu li{margin-left:0px;}
+
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+<nav class="navbar navbar-fixed-top" role="navigation" style="background: #fff;min-height:94px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-header col-lg-2 col-lg-offset-1 col-md-2 col-sm-2 col-xs-7">
+                <img src="img/logo.png" style="width:35%;max-width: 100px;" class="img-responsive">
+
+            </div>
+
+            <div class="navdiv col-lg-9 col-md-10 col-sm-10" style="z-index: 100;padding-top:1%;">
+                <ul class="nav navbar-nav collapse navbar-collapse pull-right " id="navbar-collapse" >
+
+                    <li><a href="/login" style="color:#898989">登录</a></li>
+                    <li><a href="#" style="color:#898989">论坛</a></li>
+                    <li><a href="#" style="color:#898989">团队服务</a></li>
+                    <li><a href="#" style="color:#898989" class="glyphicon glyphicon-list"></a></li>
+
+
+
+                </ul>
+
+            </div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" style="position: absolute;left: 90%;top: 18%;z-index: 999;">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            </button>
+
+        </div>
+    </div>
+</nav>
+<section style="overflow: hidden;margin-top:95px;">
+    <div class="container-fluid" style="padding:0px;">
+<div class="leftmenu" style="">
+<div class="left">
+    <ul class="leftul">
+        <li class="btn-info">
+            <a href="" class="glyphicon glyphicon-tag"></a>记录笔记</span>
+        </li>
+        <li>
+            <a href="/addnote" class="glyphicon glyphicon-plus"><span class="spanspan">&nbsp新建笔记</span></a>
+        </li>
+        <li class="active1">
+            <a href="/" class="glyphicon glyphicon-star-empty active2"><span class="spanspan">&nbsp历史笔记</span></a>
+        </li>
+      
+    </ul>
+
+</div>
+    <div class="shousuo btn-success"></div>
+
+</div>
+
+
+<div class="rightmenu" style="margin-left:27%;">
+    <ul class="topul">
+        <li style="" th:each="note : ${note?.items}">
+            <div class="lidiv" style="" >
+                <p class="lititle" th:text="${note.title}">标题</p>
+                <p class="litime" th:text="${note.pubtime}">时间</p>
+                <p class="val" th:text="${note.content}">内容</p>
+                <button class="a_demo_three  pull-right" style="" th:name="${note.id}" onclick="del(this)">x</button>
+                <button class="pull-right a_demo_two" style="margin-right:5px;" th:name="${note.id}" onclick="det(this)">详情</button>
+                <hr style="margin-top:60px;">
+            </div>
+        </li>
+    </ul>
+    
+    <ul class="pagination" id="menu">
+		<li th:class="${note?.getPage() le 1} "><a
+			th:href="|?page=${note?.getPre()}|" href="?page=1" aria-label="上一页">
+				上一页
+		</a></li>
+		<li th:each="page:${note?.getPages()}"
+			th:class="${note?.getPage() == page} ? active" class="active"><a
+			th:href="|?page=${page}|" href="?page=1">[[${page}]] <span
+				class="sr-only" ></span>
+		</a></li>
+		<li th:class="${note?.getPage() ge note?.getPagecount()} " class="active">
+			<a th:href="|?page=${note?.getNext()}|" href="?page=2"
+			aria-label="下一页">下一页
+		</a>
+		</li>
+	</ul>
+</div>
+
+    </div>
+</section>
+
+</body>
+<script type="text/javascript" th:src="@{/jquery-3.2.1/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/bg.js}"></script>
+<script th:src="@{/js/jquery.gradientify.min.js}"></script>
+<script type="text/javascript">
+    $('.shousuo').on('click',function() {
+
+            if ($('.leftmenu').css('left') === '0px') {
+            $('.leftmenu').css("left","-200px")
+        }else{
+            $('.leftmenu').css("left","0px")
+        }
+
+    });
+    $('#menu li').on('click',function(){
+
+        $(this).siblings("li").removeClass("active");
+        $(this).addClass("active");
+
+
+    });
+
+
+</script>
+</html>
